@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Page not found</title>
+        <link href="errors.css" th:href="@{/css/errors.css}" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="error-404-content">
+            <p>Error 404!</p>
+            <h1>The page you have requested could not be found :(</h1>
+            <h2>Be sure that after his vacation on the moon, our junior developer will find the time to do some coding and populate this URL :3</h2>
+            <h3>Until then, please return to the homepage:</h3>
+            <div class="redirect-homepage">
+                <button>
+                    <a th:href="@{/home}">Back to Homepage ></a>
+                </button>
+            </div>
+        </div>
+    </body>
+</html>

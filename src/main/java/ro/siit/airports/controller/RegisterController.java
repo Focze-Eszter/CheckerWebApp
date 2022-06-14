@@ -8,16 +8,25 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ro.siit.airports.domain.User;
 import ro.siit.airports.repository.UserRepository;
 import ro.siit.airports.service.UserService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @Controller
@@ -28,6 +37,14 @@ public class RegisterController {
 
     @Autowired
     UserRepository repo;
+
+    private static final Logger log = LoggerFactory.getLogger(RegisterController.class);
+
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor); //if an user enters no data it don't appears like spaces, but as null values
+    }
 
     @GetMapping("/register")
     public String registerForm(Model model) {
@@ -48,15 +65,42 @@ public class RegisterController {
         return "login-successfully";
     }*/
 
-    @PostMapping("/process_register")
+    /*@PostMapping("/process_register")
     public String processRegistration(User user) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String encodedPassword = encoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         repo.save(user);
         return "register_successfully";
-    }
+    }*/
 
+    @PostMapping("process_register/save")
+    public String saveUser(@Valid @ModelAttribute(name = "user") User user, RedirectAttributes ra, @RequestParam("fileImage")
+            MultipartFile multipartFile, BindingResult bindingResult) throws IOException {
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        user.setImage(fileName);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encodedPassword = encoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+        User savedUser = repo.save(user);
+        String uploadDir = "./user-images/" + savedUser.getId();
+        Path uploadPath = Paths.get(uploadDir);
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
+        try (InputStream inputStream = multipartFile.getInputStream()) {
+            Path filePath = uploadPath.resolve(fileName);
+            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new IOException("Could not save the uploaded file: " + fileName);
+        }
+        ra.addFlashAttribute("message", "You have been registered successfully.");
+        if (bindingResult.hasErrors()) {
+            return "register";
+        }
+        return "register_successfully";
+
+    }
 
     @GetMapping("/login")
     public ModelAndView login() {

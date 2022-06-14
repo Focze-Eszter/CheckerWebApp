@@ -23,7 +23,6 @@ public interface AirportRepository extends PagingAndSortingRepository<Airport, L
 
     List<Airport> findByCity(String city);
 
-
 }
 
 

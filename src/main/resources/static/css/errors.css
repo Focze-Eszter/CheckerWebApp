@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Righteous&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow: hidden;
+}
+
+/*error 400 page*/
+.error-404-content {
+    background: linear-gradient(rgb(26 26 27 / 52%), rgb(5, 9, 49)), url("../images/path/to/image/vacation.webp") no-repeat fixed ;
+    background-size: cover;
+    height: 100vh;
+}
+
+.error-404-content p {
+    text-align: center;
+    font-family: "Play", sans-serif;
+    color: rgba(236, 63, 24, 1);
+    font-size: 3.5em;
+}
+
+.error-404-content h1 {
+    text-align: center;
+    font-family: "Play", sans-serif;
+    color: #e48a16;
+    font-size: 3em;
+}
+
+.error-404-content h2 {
+    text-align: center;
+    font-family: "Play", sans-serif;
+    color: white;
+    font-size: 1.8em;
+}
+
+.error-404-content h3 {
+    text-align: center;
+    font-family: "Play", sans-serif;
+    color: #13d3f5;
+    font-size: 1.5em;
+}
+
+.error-404-content .redirect-homepage a {
+    font-family: "Play", sans-serif;
+    color: white;
+    font-size: 1.1em;
+    text-decoration: none;
+    padding: 13px 15px;
+}
+
+button {
+    background-color: #2abf53;
+    padding: 12px 5px;
+    border-radius: 5%;
+    transform: translate(330%, 20%);
+}
+
+button:hover {
+    background-color: rgba(115, 201, 121, 1);
+}
+
+/*error 500 page*/
+
+.error-500-content {
+    background: linear-gradient(rgb(10 10 10 / 52%), #0d1c4ea6), url("../images/path/to/image/problem.webp") no-repeat fixed;
+    background-size: cover;
+    background-position: bottom;
+    height: 100vh;
+}
+
+.error-500-content p {
+    transform: translate(60%, 100%);
+    font-family: "Play", sans-serif;
+    color: rgb(236 24 77);
+    font-size: 3.5em;
+}
+
+.error-500-content h1 {
+    transform: translate(20%, 200%);
+    font-family: "Play", sans-serif;
+    text-align: center;
+    color: #6745F3;
+    font-size: 2.6em;
+}
+
+.error-500-content h2 {
+    text-align: center;
+    width: 700px;
+    transform: translate(80%, 150%);
+    font-family: "Play", sans-serif;
+    color: white;
+    font-size: 1.7em;
+}
+
+.error-500-content h3 {
+    transform: translate(52%, 640%);
+    font-family: "Play", sans-serif;
+    color: #f5d513;
+    font-size: 1.5em;
+}
+
+.error-500-content .redirect-homepage a {
+    font-family: "Play", sans-serif;
+    color: white;
+    font-size: 1.1em;
+    text-decoration: none;
+    padding: 13px 15px;
+}
+
+.error-500-content .redirect-homepage button {
+    transform: translate(470%, 450%);
+    background-color:blueviolet;
+}
+
+/*error 403*/
+
+.error-403-content {
+    background: linear-gradient(rgb(114 131 230 / 52%), rgb(117 63 19 / 73%)), url("../images/path/to/image/no_pass.webp") no-repeat fixed ;
+    background-size: cover;
+    background-position:bottom;
+    height: 100vh;
+}
+
+.error-403-content p {
+    font-family: "Play", sans-serif;
+    color: rgb(241 9 24);
+    font-size: 3.5em;
+    transform: translate(26%, 200%)
+}
+
+.error-403-content h1 {
+    font-family: "Play", sans-serif;
+    color: #e4d016;
+    font-size: 3em;
+    transform: translate(23%, 170%)
+}
+
+.error-403-content h2 {
+    text-align: center;
+    width:600px;
+    transform: translate(28%, 230%);
+    font-family: "Play", sans-serif;
+    color: white;
+    font-size: 1.8em;
+}
+
+.error-403-content h3 {
+    font-family: "Play", sans-serif;
+    color: #42f133;
+    font-size: 1.5em;
+    transform: translate(26%, 670%);
+}
+
+.error-403-content .redirect-homepage a {
+    font-family: "Play", sans-serif;
+    color: white;
+    font-size: 1.1em;
+    text-decoration: none;
+    padding: 13px 15px;
+}
+
+.error-403-content .redirect-homepage button {
+    transform: translate(225%, 500%);
+    background-color: #659ee6;
+}

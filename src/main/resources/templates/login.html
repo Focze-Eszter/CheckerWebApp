@@ -2,74 +2,67 @@
 
 <html  xmlns="http://www.w3.org/1999/xhtml"
        xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Login Page</title>
+    <head>
+        <title>Login Page</title>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link href="/static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet" />
+    </head>
+    <body>
+        <header th:insert="header :: head"></header>
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-
-    <link href="/static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet" />
-</head>
-<body>
-<header th:insert="header :: head"></header>
-<div class="container">
-
-        <div class="form-group" th:if="${param.error}">
-            Invalid email or password.
-        </div>
-        <div class="form-group" th:if="${param.logout}">
-            You have been logged out successfully.
-        </div>
-    </div>
-    <div class="d-flex justify-content-center h-100">
-        <div class="card">
-            <div class="card-header">
-                <h3>Sign In</h3>
-                <div class="d-flex justify-content-end social_icon">
-                    <span><i class="fab fa-facebook-square"></i></span>
-                    <span><i class="fab fa-google-plus-square"></i></span>
-                    <span><i class="fab fa-twitter-square"></i></span>
+            <div class="feedback-message">
+                <div class="alert alert-success" role="alert" th:if="${param.logout}" >
+                    You have been logged out successfully.
+                </div>
+                <div class="alert alert-danger" role="alert" th:if="${param.error}">
+                    Invalid email or password.
                 </div>
             </div>
-            <div class="card-body">
-                <form th:action ="@{/login}" th:object="${user}" method="post">
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+
+            <div class="d-flex justify-content-center h-100">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Sign In</h3>
+                        <div class="d-flex justify-content-end social_icon">
+                            <span><i class="fab fa-facebook-square"></i></span>
+                            <span><a th:href="@{/oauth2/authorization/google}"><i class="fab fa-google-plus-square"></i></a></span>
+                            <span><i class="fab fa-linkedin-square"></i></span>
                         </div>
-                        <input name="username" type="text" th:field = "*{email}" class="form-control" placeholder="Email" id="email">
-
                     </div>
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    <div class="card-body">
+                        <form th:action ="@{/login}" th:object="${user}" method="post">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input name="username" type="text" th:field = "*{email}" class="form-control" placeholder="Email" id="email">
+
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input name="password" type="password" th:field="*{password}" class="form-control" placeholder="Password" id="password">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Submit" class="btn float-right login_btn">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-center links">
+                            Don't have an account?   <a th:href="@{/register}">Sign Up</a>
                         </div>
-                        <input name="password" type="password" th:field="*{password}" class="form-control" placeholder="Password" id="password">
+                        <div class="d-flex justify-content-center">
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <input type="submit" value="Submit" class="btn float-right login_btn">
-                    </div>
-                </form>
-            </div>
-            <div class="card-footer">
-                <div class="d-flex justify-content-center links">
-                    Don't have an account?<a th:href="@{/register}"> Sign Up</a>
-                </div>
-                <div class="d-flex justify-content-center">
                 </div>
             </div>
-        </div>
-    </div>
-<div th:insert = "footer :: foot"></div>
-</body>
+        <div th:replace="footer :: footer"></div>
+    </body>
 </html>

@@ -1,18 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+html {
+    height: 100%;
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Poppins', sans-serif;
 }
-body
-{
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 165%;
     /*background: linear-gradient(#9795EF, #F9C5D1);
     min-height: 200vh;/* face pagina sa fie mai lunga incat sa dai scroll*/
 }
-header
-{
+
+header {
     position: fixed;
     top: 0;
     left: 0;
@@ -23,23 +27,22 @@ header
     transition: 0.6s;
     padding: 40px 100px;
     z-index: 100000;
-
 }
+
 header.sticky {
     padding: 5px 100px;
     background: #fff;
-
 }
-header .logo
-{
+
+header .logo {
     position: relative;
     font-weight: 700;
     color: #fff;
     text-decoration: none;/*te scapa de sublinierea textului*/
     font-size: 2em;
-    text-transform:uppercase;
-    letter-spacing:2px;
-    transition:0.6s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.6s;
 }
 
 header ul {
@@ -60,17 +63,8 @@ header ul li a {
     text-decoration: none;
     color: #fff;
     letter-spacing: 2px;
-    /*font-weight: 500px;*/
     transition: 0.6s;
 }
-/*.banner {
-    position: relative;
-    width: 100%;
-    height:100vh;
-    /*background-image:url(planet.jpg);
-    background-size: cover;
-
-}*/
 
 header.sticky .logo,
 header.sticky ul li a {
@@ -88,16 +82,12 @@ header.sticky ul li a {
 }
 
 /*login button*/
-
 #SignIn,
-#SignOut
-{
+#SignOut {
     position: absolute;
-    /*top:100%;*/
-    /*left:0%;*/
     transform: translate(0%, -50%);
     color: #1670f0;
-    padding:3px 6px;
+    padding: 3px 6px;
     font-size: 1em;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -106,20 +96,19 @@ header.sticky ul li a {
     overflow: hidden;
     font-family: sans-serif;
 }
-#SignIn, #SignOut :before
-{
+
+#SignIn, #SignOut :before {
     content: '';
     position: absolute;
     top:2px;
     left: 2px;
     bottom: 2px;
     width: 50%;
-    /*background: rgba(255,255,255,0.05) !important;*/
-    background:rgba(132, 22, 222, 0.05);
+    background: rgba(132, 22, 222, 0.05);
 }
+
 #SignIn,
-#SignOut span:nth-child(1)
-{
+#SignOut span:nth-child(1) {
     position: absolute;
     top:0;
     left: 0;
@@ -129,8 +118,7 @@ header.sticky ul li a {
     animation: animate1 2s linear infinite;
 }
 
-@keyframes animate1
-{
+@keyframes animate1 {
     0%
     {
         transform: translateX(-100%);
@@ -140,9 +128,9 @@ header.sticky ul li a {
         transform: translateX(100%);
     }
 }
+
 #SignIn,
-#SignOut span:nth-child(2)
-{
+#SignOut span:nth-child(2) {
     position: absolute;
     top:0;
     right: 0;
@@ -152,8 +140,8 @@ header.sticky ul li a {
     animation:animate2 2s linear infinite;
     animation-delay: 1s;
 }
-@keyframes animate2
-{
+
+@keyframes animate2 {
     0%
     {
         transform: translateY(-100%);
@@ -163,9 +151,9 @@ header.sticky ul li a {
         transform: translateY(100%);
     }
 }
+
 #SignIn,
-#SignOut span:nth-child(3)
-{
+#SignOut span:nth-child(3) {
     position: absolute;
     bottom:0;
     right: 0;
@@ -174,8 +162,8 @@ header.sticky ul li a {
     background: linear-gradient(to left, #0c002b, #1779ff);
     animation: animate3 2s linear infinite;
 }
-@keyframes animate3
-{
+
+@keyframes animate3 {
     0%
     {
         transform: translateX(100%);
@@ -185,9 +173,9 @@ header.sticky ul li a {
         transform: translateX(-100%);
     }
 }
+
 #SignIn,
-#SignOut span:nth-child(4)
-{
+#SignOut span:nth-child(4) {
     position: absolute;
     top:0;
     left: 0;
@@ -197,8 +185,8 @@ header.sticky ul li a {
     animation: animate4 2s linear infinite;
     animation-delay: 1s;
 }
-@keyframes animate4
-{
+
+@keyframes animate4 {
     0%
     {
         transform: translateY(100%);
@@ -219,8 +207,8 @@ header.sticky ul li a {
     text-align: center;
 }
 
-.body-process{
-    background: linear-gradient(rgba(245, 246,252,0.52), rgba(117, 19, 93, 0.73)), url("../images/path/to/image/welcome.jpg") center no-repeat fixed ;
+.body-process {
+    background: linear-gradient(rgba(245, 246,252,0.52), rgba(117, 19, 93, 0.73)), url("../images/path/to/image/welcome.webp") center no-repeat fixed;
     background-attachment: fixed;
     background-position-y: 50px;
     background-size: cover;
@@ -230,55 +218,47 @@ header.sticky ul li a {
     align-content: center;
     text-decoration: none;
     transform: translate(350px, 250px);
-
 }
 
 .home {
     text-align: center;
     display: flex;
     justify-content: center;
-    min-height: 100vh;
    /* background: url("../images/path/to/image/airline.jpeg") center no-repeat fixed;
     background-color: rgb(8, 83, 98);*/
-    background: linear-gradient(rgba(245, 246,252,0.52), rgba(117, 19, 93, 0.73)), url("../images/path/to/image/airline.jpeg") center no-repeat fixed ;
+    background: linear-gradient(rgba(245, 246,252,0.52), rgba(117, 19, 93, 0.73)), url("../images/path/to/image/airline.webp") center no-repeat fixed;
     background-attachment: fixed;
     background-position-y: 50px;
     background-size: cover;
 }
 
 .home::before {
-
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-
 }
 
 .home::after {
-
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-
 }
 
 .container {
     position: relative;
     display: flex;
     justify-content: center;
-    /*align-items: center;*/
     top: 50%;
-    transform: translateY(30%);
+    transform: translateY(45%);
     max-width: 1200px;
     flex-wrap: wrap;
     z-index: 1;
-
 }
 
 .container .card {
@@ -298,7 +278,7 @@ header.sticky ul li a {
     backdrop-filter: blur(5px);
 }
 
-.container .card .content{
+.container .card .content {
     padding: 20px;
     text-align: center;
     transform: translateY(80px);
@@ -322,14 +302,12 @@ header.sticky ul li a {
 }
 
 .container .card .content .imgbx img {
-
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-
 }
 
 .container .card .content h2 {
@@ -374,7 +352,6 @@ header.sticky ul li a {
     top: 20%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-
 }
 
 .welcome-subtitle {
@@ -387,21 +364,22 @@ header.sticky ul li a {
     color: rgb(134, 0, 179);
 }
 
+.sign-in-msg {
+    transform:translateX(150px);
+}
+
 .nav-list {
-
     transition: initial;
-
 }
 
 .nav-link,
-.current{
+.current {
     color: #fafafa;
     position: relative;
-   /* font-size: 1.3rem;*/
 }
 
 .nav-link::before,
-.current::before{
+.current::before {
     content: "";
     position: absolute;
     left: 0;
@@ -414,11 +392,11 @@ header.sticky ul li a {
     transition: transform 650ms;
 }
 
-.current::before{
+.current::before {
     transform: scaleX(1);
 }
 
-.nav-link:hover::before{
+.nav-link:hover::before {
     transform: scaleX(1);
 }
 
@@ -427,14 +405,6 @@ header.sticky ul li a {
     width: 100px;
     height: auto;
     transform: translateX(-15%);
-}
-
-.footer {
-    display: flex;
-    justify-content: flex-end;
-    align-items:center;
-    padding: 25px 10%;
-    background-color: #1b1f33;
 }
 
 .formular .card {
@@ -446,10 +416,15 @@ header.sticky ul li a {
     width:360px;
 }
 
-.formular {
-    background: linear-gradient(rgba(245, 246,252,0.52), rgba(117, 19, 93, 0.73)), url("../images/path/to/image/background.jpg") center no-repeat fixed ;
+.airport-form {
+    background: linear-gradient(rgba(245, 246,252,0.52), rgba(117, 19, 93, 0.73)), url("../images/path/to/image/background.webp") center no-repeat fixed;
     background-attachment: fixed;
-    height: 100vh;
+    height: 105vh;
+}
+
+.airline-form {
+    background: linear-gradient(rgba(245, 246,252,0.52), rgb(86 9 67)), url("../images/path/to/image/pattern.webp") center no-repeat fixed;
+        height: 105vh;
 }
 
 .flightform .card {
@@ -462,8 +437,75 @@ header.sticky ul li a {
 }
 
 .flightForm {
-    background: linear-gradient(rgba(245, 246,252,0.52), rgba(117, 19, 93, 0.73)), url("../images/path/to/image/background.jpg") center no-repeat fixed ;
+    background: linear-gradient(rgba(245, 246,252,0.52), rgba(117, 19, 93, 0.73)), url("../images/path/to/image/background.webp") center no-repeat fixed;
     background-attachment: fixed;
     height: 100vh;
 }
 
+.mainContent {
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+}
+
+.images img {
+    padding:0 20px 20px;
+    height:380px;
+    width:380px;
+    transform:translateY(65%);
+    filter:brightness(60%)
+}
+
+.images:hover {
+    opacity: .5;
+    transition:.5s;
+    transform:scale(1.1);
+}
+
+.word {
+    display: block;
+    font-family: Audiowide;
+    position:absolute;
+    font-size:50px;
+    color:white;
+}
+
+.word1 {
+    transform:translateX(80px);
+}
+
+.word2 {
+    transform:translateX(95px);
+}
+
+.word3 {
+    transform:translateX(80px);
+}
+
+.word4 {
+    transform:translateX(95px);
+}
+
+.backgroundRepair {
+    background: linear-gradient(rgba(245, 246,252,0.52), rgba(117, 19, 93, 0.73)), url("../images/path/to/image/repair.webp") center no-repeat fixed;
+    background-attachment: fixed;
+    height:165vh;
+}
+
+.admin-title h1 {
+    transform: translate(120%, -55%);
+    font-family: 'Play', sans-serif;
+    color: white;
+    font-size: 4em;
+    margin:0;
+}
+
+.admin-title h3 {
+    transform: translate(125%, -105%);
+        font-family: 'Play', sans-serif;
+        color: #f3c003b8;
+        font-size: 2em;
+        margin:0;
+}

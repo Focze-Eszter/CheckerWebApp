@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Administration Panel</title>
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="/static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<header th:insert="header :: head"></header>
+<section class="backgroundRepair" >
+    <div class="mainContent">
+        <div class="admin-title">
+            <h1>Admin panel</h1>
+            <div sec:authorize="isAuthenticated()">
+                <h2>Welcome, <b><span sec:authentication="name">User</span></b></h2>
+                &nbsp
+                <h2 sec:authentication="principal.authorities">Role</h2>
+            </div>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Logout">
+            </form>
+            <h3>Select and start editing</h3>
+
+        </div>
+        <div class="images">
+            <a th:href="@{/searchAirport}">
+                <img class="photo" th:src="@{/images/path/to/image/fixing.webp}" style="width:400px;height: 300px">
+                <div class="word word1">Airports</div>
+            </a>
+        </div>
+        <div class="images">
+            <a th:href="@{/searchAirline}">
+                <img class="photo" th:src="@{/images/path/to/image/maintenance.webp}" style="width:400px;height: 300px">
+                <div class="word word2">Airlines</div>
+            </a>
+        </div>
+        <div class="images">
+            <a th:href="@{/searchFlight}">
+                <img class="photo" th:src="@{/images/path/to/image/aviationRepair.webp}" style="width:400px;height: 300px">
+                <div class="word word3">Flights</div>
+            </a>
+        </div>
+        <div class="images">
+            <a th:href="@{/searchFlight}">
+                <img class="photo" th:src="@{/images/path/to/image/user-research.webp}" style="width:400px;height: 300px">
+                <div class="word word4">Users</div>
+            </a>
+        </div>
+    </div>
+</section>
+<script type="text/javascript" th:src = "@{/js/scriptic.js}" src="/static/js/scriptic.js"></script>
+</body>
+</html>

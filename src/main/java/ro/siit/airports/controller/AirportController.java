@@ -25,43 +25,16 @@ public class AirportController {
     @GetMapping("/airports/{airportCode}")
     public String retrieveAirports(final Model model) {
         final List<Airport> airports = (List<Airport>) airportRepository.findAll();
-        //final List<String> names = opt.stream().map(q -> q.getName()).collect(Collectors.toList());
         model.addAttribute("myAirports", airports);
         return "airport-page";
     }
 
-   /* @GetMapping("/airportsCompleteTable")
-    public String viewPage(Model model) {
-       return listByPage(model,1, "name", "ascending");
-    }
-
-    @GetMapping("airports/page/{pageNumber}")
-    public String listByPage(Model model, @PathVariable("pageNumber") int currentPage,
-        @Param("sortedField") String sortedField,
-        @Param("sortedDirection") String sortedDirection) {
-
-        Page<Airport> page = airportService.listAll(currentPage, sortedField, sortedDirection);
-
-        long totalAirports = page.getTotalElements();
-        int totalPages = page.getTotalPages();
-        List<Airport> airportsList = page.getContent();
-
-        model.addAttribute("currentPage", currentPage);
-        model.addAttribute("totalAirports", totalAirports);
-        model.addAttribute("totalPages" , totalPages);
-        model.addAttribute("ourAirports", airportsList);
-        model.addAttribute("sortedField", sortedField);
-        model.addAttribute("sortedDirection", sortedDirection);
-        return "airports-complete-table";
-    }
-*/
 
     @GetMapping("/search")
     public ModelAndView displaySearchPage(Model model) {
         final ModelAndView modelAndView = new ModelAndView("search");
         modelAndView.addObject("search", new Search());
         return modelAndView;
-
     }
 
     @PostMapping("/search")
@@ -78,24 +51,6 @@ public class AirportController {
         return listByPage(model,1,"name", "ascending", keyword);
     }
 
-/*
-    @PostMapping("/searchAirport")
-    public String check(Model model, @ModelAttribute("keyword") final String keyword) {
-        int pageNumber = 1;
-        String sortedField = "id";
-        String sortedDirection = "ascending";
-
-        Page<Airport> page = airportService.check(pageNumber, sortedDirection, sortedDirection, keyword);
-        List<Airport> showAirports = page.getContent();
-
-        model.addAttribute("currentPage", pageNumber);
-        model.addAttribute("totalPages", page.getTotalPages());
-        model.addAttribute("totalElements" , page.getTotalElements());
-        model.addAttribute("sortedField", sortedField);
-        model.addAttribute("sortedDirection", sortedDirection);
-        model.addAttribute("showAirports", showAirports);
-        return "searchAirport";
-    }*/
 
     @GetMapping("airports/page/{pageNumber}")
     public String listByPage(Model model, @PathVariable("pageNumber") int currentPage,
@@ -121,9 +76,7 @@ public class AirportController {
     }
 
     @RequestMapping(path = {"/edit", "/edit/{id}"})
-    public String editAirportById(Model model, @PathVariable("id") Optional<Long> id)
-
-    {
+    public String editAirportById(Model model, @PathVariable("id") Optional<Long> id) {
 
         System.out.println("editAirportById" + id);
         if (id.isPresent()) {
@@ -133,14 +86,11 @@ public class AirportController {
             model.addAttribute("airport", new Airport());
         }
 
-
         return "add-edited-airport";
     }
 
     @RequestMapping(path = "/delete/{id}")
-    public String deleteAirportById(Model model, @PathVariable("id") Long id)
-
-    {
+    public String deleteAirportById(Model model, @PathVariable("id") Long id) {
 
         System.out.println("deleteAirportById" + id);
 
@@ -156,6 +106,13 @@ public class AirportController {
         airportService.createOrUpdateAirport(airport);
 
         return "redirect:/searchAirport";
+    }
+
+    @GetMapping("/show/{id}")
+    public String showAirportDetails(Model model, @PathVariable("id") Long id) {
+        Airport airport = airportService.getAirportById(id);
+        model.addAttribute("airport_details", airport);
+        return "details-page";
     }
 }
 

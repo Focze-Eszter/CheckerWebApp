@@ -48,14 +48,8 @@ public class FlightController {
                                        @Param("sortedField") String sortedField,
                                        @Param("sortedDirection") String sortedDirection, @PathVariable("id") Long airportId) {
         System.out.println("findFlightById" + airportId);
-        /*final ModelAndView mav = new ModelAndView("detailsAirport");*/
         final Page<Flight> flightsPage = flightService.getFlightsById(currentPage, sortedField, sortedDirection,airportId);
-       /* final String flight = flights.stream()
-                .findFirst()
-                .map(f -> f.getAirline().getName()
-                        + "\n" + f.getDepartureAirport().getName() + f.getDepartureAirport().getCountry()
-                        + "\n" + f.getArrivalAirport().getName() + " " + f.getArrivalAirport().getCity() + "\n" + f.getDeparture())
-                .orElse("No data");*/
+
 
         long totalFlights = flightsPage.getTotalElements();
         int totalPages = flightsPage.getTotalPages();

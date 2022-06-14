@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Internal server error</title>
+    <link href="errors.css" th:href="@{/css/errors.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="error-500-content">
+    <p>Error 500!</p>
+    <h1>Upss, something went wrong... :(</h1>
+    <h2>The server is not responding anymore. We will make sure that the problem will be fixed as soon as possible :p</h2>
+    <h3>Until then, please return to the homepage:</h3>
+    <div class="redirect-homepage">
+        <button>
+            <a th:href="@{/home}">Back to Homepage ></a>
+        </button>
+    </div>
+</div>
+</body>
+</html>
