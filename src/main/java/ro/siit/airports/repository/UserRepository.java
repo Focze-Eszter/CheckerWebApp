@@ -8,6 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+
     User findByNameAndPassword(String name, String password);
 
     @Query("select u from User u where u.email =?1")

@@ -3,108 +3,136 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <title>Search Airlines</title>
+    <head>
+        <title>Search Airlines</title>
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <meta name="viewport" content="width=device-width initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+              integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+              crossorigin="anonymous"/>
+        <link href="/static/css/search-style-airline.css" th:href="@{/css/search-style-airline.css}" rel="stylesheet" />
+    </head>
+    <body>
+        <header th:insert="header :: head"></header>
+            <section class="background" >
+                <div class="container-of-search">
+                    <div class="search">
+                        <form class="search-fields"
+                              th:action="@{/airlines/page/1}"  th:object="${listAirlines}">
+                            <input type="hidden" name="sortedField" th:value="${sortedField}"/>
+                            <input type="hidden" name="sortedDirection" th:value="${sortedDirection}"/>
+                            <div class="image">
+                            </div>
+                            <div class="form-group">
+                                <label for="search"></label>
+                                <input id="search" type="text" name="keyword" autocomplete="off" class="search-airline inputable-form" th:value = "${keyword}" placeholder="Type an airline name, country or icao code"/>
 
-    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <meta name="viewport" content="width=device-width initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-    <link href="/static/css/search-style-airline.css" th:href="@{/css/search-style-airline.css}" rel="stylesheet" />
+                                <button type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                        <div class="center-mouse">
+                            <div class="mouse">
+                            </div>
+                        </div>
+                    </div>
+                    <table class="content-table" border="1", cellpadding="8">
+                        <thead>
+                            <th scope="col">Airline</th>
+                            <th scope="col">Country</th>
+                            <th scope="col">Icao</th>
+                            <th scope="col">Iata</th>
+                            <th scope="col" sec:authorize="isAuthenticated()">Modify</th>
+                        </thead>
+                        <tbody>
+                            <tr th:each="airline : ${listAirlines}">
+                                <td th:text="${airline.name}"></td>
+                                <td th:text="${airline.country}"></td>
+                                <td th:text = "${airline.icao}"></td>
+                                <td th:text = "${airline.iata}"></td>
+                                <td class="action">
+                                    <a th:href="@{/edit/airline{id}(id=${airline.id})}" class="edit-btn" sec:authorize="isAuthenticated()">
+                                        <button class="fas fa-edit">Edit</button>
+                                    </a>
+                                    <a th:href="@{/delete/airline{id}(id=${airline.id})}" class="delete-btn" sec:authorize="isAuthenticated()">
+                                        <button value ="Alert Message" id="btnAlertMessage" class="fas fa-trash-alt">Delete</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    &nbsp;
+                    &nbsp;
+                    <div>
+                        <div class="text-center m-1">
+                            <span><b>Showing: Page [[${currentPage}]] to [[${totalPages}]] of [[${totalAirlines}]] airlines</b></span>
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                        </div>
+                        <nav>
+                            <ul class="pagination justify-content-center flex-wrap">
+                                <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                                    <a th:href = "@{'/airlines/page/1?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection}}" class="page-link">First</a>
+                                </li>
 
-</head>
-<body>
+                                <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                                    <a th:href="@{'/airlines/page/' + ${currentPage - 1} + '?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection}}" class="page-link">Previous</a>
+                                </li>
 
-<header th:insert="header :: head"></header>
+                                <th:block th:if="${totalPages <= 10}">
+                                    <li th:each = "i: ${#numbers.sequence(1, totalPages)}" th:class="${currentPage != i ? 'page-item' : 'page-item disabled'}">
+                                        <a th:href = "@{'/airlines/page/' + ${i}} + '?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection}" class="sr-only">[[${i}]]</a>
+                                    </li>
+                                </th:block>
 
-<section class="background" >
-    <div class="container-of-search">
-        <div class="search">
-            <form class="search-fields"
-                  th:action="@{/airlines/page/1}"  th:object="${listAirlines}">
-                <input type="hidden" name="sortedField" th:value="${sortedField}"/>
-                <input type="hidden" name="sortedDirection" th:value="${sortedDirection}"/>
-                <div class="image">
-                </div>
-                <div class="form-group">
-                    <label for="search"></label>
+                                <th:block th:if="${totalPages > 10}">
+                                    <th:block th:if="${currentPage <= 5 || currentPage > totalPages - 4}">
+                                        <li th:each = "i: ${#numbers.sequence(1, 5)}" th:class="${currentPage != i ? 'page-item' : 'page-item disabled'}">
+                                            <a th:href = "@{'/airlines/page/' + ${i}} + '?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection}" class="page-link">[[${i}]]</a>
+                                        </li>
+                                        <a th:href = "@{'/airlines/page/' + 6} + '?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection}" class="page-link">...</a>
 
-                    <input id="search" type="text" name="keyword" autocomplete="off" class="form-control" th:value = "${keyword}" placeholder="Type an airline name, country or icao code"/>
-                    <button type="submit">
-                        <i class="fas fa-search"></i>
+                                        <li th:each = "i: ${#numbers.sequence(totalPages - 4, totalPages)}" th:class="${currentPage != i ? 'page-item' : 'page-item disabled'}">
+                                            <a th:href = "@{'/airlines/page/' + ${i}} + '?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection}" class="page-link">[[${i}]]</a>
+                                        </li>
+                                    </th:block>
+
+                                    <th:block th:if="${currentPage > 5 && currentPage < totalPages - 4}">
+                                        <a th:href = "@{'/airlines/page/' + ${currentPage - 5}} + '?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection}" class="page-link">...</a>
+                                        <li th:each = "i: ${#numbers.sequence(currentPage - 4, currentPage + 4)}" th:class="${currentPage != i ? 'page-item' : 'page-item disabled'}">
+                                            <a th:href = "@{'/airlines/page/' + ${i}} + '?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection}" class="page-link">[[${i}]]</a>
+                                        </li>
+                                        <a th:href = "@{'/airlines/page/' + ${currentPage + 5}} + '?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection}" class="page-link">...</a>
+                                    </th:block>
+                                </th:block>
+
+                                <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                                    <a th:href="@{'/airlines/page/' + ${currentPage + 1} + '?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection}}" class="page-link">Next</a>
+                                </li>
+
+                                <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                                    <a th:href="@{'/airlines/page/' + ${totalPages} + '?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection}}" class="page-link">Last</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <button id="scrollToTop">
+                        <i class="fas fa-arrow-up"></i>
                     </button>
                 </div>
-            </form>
-            <div class="center-mouse">
-                <div class="mouse">
-                </div>
-            </div>
-        </div>
-        <table class="content-table" border="1", cellpadding="8">
-            <thead>
-            <th scope="col">Airline</th>
-            <th scope="col">Country</th>
-            <th scope="col">Icao</th>
-            <th scope="col">Iata</th>
-            <th scope="col" sec:authorize="isAuthenticated()">Modify</th>
-            </thead>
-            <tbody>
-            <tr th:each="airline : ${listAirlines}">
-                <td th:text="${airline.name}"></td>
-                <td th:text="${airline.country}"></td>
-                <td th:text = "${airline.icao}"></td>
-                <td th:text = "${airline.iata}"></td>
-                <td class="action">
-
-                    <a th:href="@{/edit/airline{id}(id=${airline.id})}" class="edit-btn" sec:authorize="isAuthenticated()">
-                        <button class="fas fa-edit">Edit</button>
-                    </a>
-
-
-                    <a th:href="@{/delete/airline{id}(id=${airline.id})}" class="delete-btn" sec:authorize="isAuthenticated()">
-                        <button value ="Alert Message" id="btnAlertMessage" class="fas fa-trash-alt">Delete</button>
-                    </a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        &nbsp;
-        &nbsp;
-        <div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Total Airlines : [[${totalAirlines}]] - Page [[${currentPage}]] of [[${totalPages}]]
-            &nbsp; - &nbsp;
-
-            <a th:if = "${currentPage > 1}"  th:href = "@{'/airlines/page/1?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection} + ${keyword != null ? '&keyword=' + keyword : ''}}">First</a>
-
-            <span th:unless = "${currentPage > 1}" >First</span>
-            &nbsp;
-
-            <a th:if="${currentPage > 1}" th:href="@{'/airline/page/' + ${currentPage - 1} + '?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection} + ${keyword != null ? '&keyword=' + keyword : ''}}" >Previous</a>
-            <span th:unless = "${currentPage > 1}">Previous</span>
-            &nbsp;
-
-            <span th:each = "i: ${#numbers.sequence(1, totalPages)}">
-        <a th:if = "${i != currentPage}" th:href = "@{'/airlines/page/' + ${i}} + '?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection} + ${keyword != null ? '&keyword=' + keyword : ''}" >[[${i}]]</a>
-            <span th:unless = "${i != currentPage}" >[[${i}]]</span>
-            &nbsp;
-        </span>
-
-            <a th:if = "${currentPage < totalPages}" th:href="@{'/airlines/page/' + ${currentPage + 1} + '?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection} + ${keyword != null ? '&keyword=' + keyword : ''}}">Next</a>
-            <span th:unless = "${currentPage < totalPages}">Next</span>
-            &nbsp;
-
-            <a th:if = "${currentPage < totalPages}" th:href="@{'/airlines/page/' + ${totalPages} + '?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection} + ${keyword != null ? '&keyword=' + keyword : ''}}">Last</a>
-            <span th:unless = "${currentPage < totalPages}">Last</span>
-
-        </div>
-        <button id="scrollToTop">
-            <i class="fas fa-arrow-up"></i>
-        </button>
-    </div>
-</section>
-
-<script type="text/javascript" th:src = "@{/js/scriptic.js}" src="/static/js/scriptic.js"></script>
-
-</body>
+            </section>
+        <div th:replace="footer :: footer"></div>
+        <script type="text/javascript">
+            window.onload = function() {
+            changeAirlinePlaceholder();
+            };
+        </script>
+        <script type="text/javascript" th:src = "@{/js/scriptic.js}" src="/static/js/scriptic.js"></script>
+    </body>
 </html>

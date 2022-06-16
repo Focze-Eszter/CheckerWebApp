@@ -1,51 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+/*320px-480px: Mobile devices
+481px-768px: iPads, Tablets
+769px-1024px: Small screens, laptops
+1025px-1200px: Desktops, large screens
+1201px and more: Extra large screens, TV*/
+
+html {
+    height: 100%;
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Poppins', sans-serif;
 }
-body
-{
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 165%;
     /*background: linear-gradient(#9795EF, #F9C5D1);
     min-height: 200vh;/* face pagina sa fie mai lunga incat sa dai scroll*/
 }
-header
-{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+
+/*header starts*/
+
+header {
     display:flex;
-    justify-content: space-between;
+    justify-content:center;
+    padding: 0px;
+    width: 100vw;
+    position: fixed;
+    bottom: 0px;
+    left: 0;
     align-items: center;
-    transition: 0.6s;
-    padding: 40px 100px;
     z-index: 100000;
-
+    box-shadow: 1px 4px 15px -4px rgba(0,0,0,0.49);
+    -webkit-box-shadow: 1px 4px 15px -4px rgba(0,0,0,0.49);
+    -moz-box-shadow: 1px 4px 15px -4px rgba(0,0,0,0.49);
 }
-header.sticky {
-    padding: 5px 100px;
-    background: #fff;
 
-}
-header .logo
-{
-    position: relative;
-    font-weight: 700;
-    color: #fff;
-    text-decoration: none;/*te scapa de sublinierea textului*/
-    font-size: 2em;
-    text-transform:uppercase;
-    letter-spacing:2px;
-    transition:0.6s;
+.nav-list {
+    background: #C39BD3;
+    width:inherit;
+    justify-content:space-around;
+    height:inherit;
+    margin:0;
+    padding:0;
 }
 
 header ul {
     position: relative;
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 
@@ -54,160 +61,57 @@ header ul li {
     list-style: none;
 }
 
-header ul li a {
-    position: relative;
-    margin: 0 15px;
+header .logo {
+    font-weight: 700;
+    color: #5c1b1b;;
     text-decoration: none;
+    font-size: clamp(1rem, 1.5vw, 2rem);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-left: 2px;
+}
+
+li .nav-link img {
+    width:25px;
+    height:auto;
+}
+
+ .logo-img {
+    display: none;
+}
+
+.nav-link {
+    cursor: pointer;
+}
+
+ header ul li a span {
+    display: none;
+    position: relative;
+    text-decoration: none;
+    font-weight: 500;
     color: #fff;
     letter-spacing: 2px;
-    /*font-weight: 500px;*/
-    transition: 0.6s;
-}
-/*.banner {
-    position: relative;
-    width: 100%;
-    height:100vh;
-    /*background-image:url(planet.jpg);
-    background-size: cover;
+ }
 
-}*/
-
-header.sticky .logo,
-header.sticky ul li a {
-    color: #000;
-}
-
-.search-container {
-    left: 0;
-    line-height: 200px;
-    margin-top: -100px;
+  header ul li a .username {
+      font-size: .8rem;
+      width: 130px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: lightgray;
+  }
+    #SignIn,
+    #SignOut {
     position: absolute;
-    text-align: center;
-    top: 50%;
-    width: 100%;
-}
-
-/*login button*/
-
-#SignIn,
-#SignOut
-{
-    position: absolute;
-    /*top:100%;*/
-    /*left:0%;*/
-    transform: translate(0%, -50%);
-    color: #1670f0;
-    padding:3px 6px;
-    font-size: 1em;
     letter-spacing: 2px;
     text-transform: uppercase;
     text-decoration: none;
-    box-shadow: 0 3px 7px rgba(0,0,0,.5);
-    overflow: hidden;
     font-family: sans-serif;
 }
-#SignIn, #SignOut :before
-{
-    content: '';
-    position: absolute;
-    top:2px;
-    left: 2px;
-    bottom: 2px;
-    width: 50%;
-    /*background: rgba(255,255,255,0.05) !important;*/
-    background:rgba(132, 22, 222, 0.05);
-}
-#SignIn,
-#SignOut span:nth-child(1)
-{
-    position: absolute;
-    top:0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(to right, #0c002b, #1779ff);
-    animation: animate1 2s linear infinite;
-}
 
-@keyframes animate1
-{
-    0%
-    {
-        transform: translateX(-100%);
-    }
-    100%
-    {
-        transform: translateX(100%);
-    }
-}
-#SignIn,
-#SignOut span:nth-child(2)
-{
-    position: absolute;
-    top:0;
-    right: 0;
-    width: 1px;
-    height: 100%;
-    background: linear-gradient(to bottom, #0c002b, #1779ff);
-    animation:animate2 2s linear infinite;
-    animation-delay: 1s;
-}
-@keyframes animate2
-{
-    0%
-    {
-        transform: translateY(-100%);
-    }
-    100%
-    {
-        transform: translateY(100%);
-    }
-}
-#SignIn,
-#SignOut span:nth-child(3)
-{
-    position: absolute;
-    bottom:0;
-    right: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(to left, #0c002b, #1779ff);
-    animation: animate3 2s linear infinite;
-}
-@keyframes animate3
-{
-    0%
-    {
-        transform: translateX(100%);
-    }
-    100%
-    {
-        transform: translateX(-100%);
-    }
-}
-#SignIn,
-#SignOut span:nth-child(4)
-{
-    position: absolute;
-    top:0;
-    left: 0;
-    width: 1px;
-    height: 100%;
-    background: linear-gradient(to top, #0c002b, #1779ff);
-    animation: animate4 2s linear infinite;
-    animation-delay: 1s;
-}
-@keyframes animate4
-{
-    0%
-    {
-        transform: translateY(100%);
-    }
-    100%
-    {
-        transform: translateY(-100%);
-    }
-}
+/*header ends*/
+
 
 .result {
     background: transparent;
@@ -219,8 +123,8 @@ header.sticky ul li a {
     text-align: center;
 }
 
-.body-process{
-    background: linear-gradient(rgba(245, 246,252,0.52), rgba(117, 19, 93, 0.73)), url("../images/path/to/image/welcome.jpg") center no-repeat fixed ;
+.body-process {
+    background: linear-gradient(rgba(245, 246,252,0.52), rgba(117, 19, 93, 0.73)), url("../images/path/to/image/welcome.webp") center no-repeat fixed;
     background-attachment: fixed;
     background-position-y: 50px;
     background-size: cover;
@@ -230,55 +134,65 @@ header.sticky ul li a {
     align-content: center;
     text-decoration: none;
     transform: translate(350px, 250px);
-
 }
 
 .home {
-    text-align: center;
     display: flex;
-    justify-content: center;
-    min-height: 100vh;
-   /* background: url("../images/path/to/image/airline.jpeg") center no-repeat fixed;
-    background-color: rgb(8, 83, 98);*/
-    background: linear-gradient(rgba(245, 246,252,0.52), rgba(117, 19, 93, 0.73)), url("../images/path/to/image/airline.jpeg") center no-repeat fixed ;
+    background: linear-gradient(rgba(245, 246,252,0.52), rgba(117, 19, 93, 0.73)), url("../images/path/to/image/airplane_towards_the_sky.webp") center no-repeat fixed;
     background-attachment: fixed;
-    background-position-y: 50px;
     background-size: cover;
+    background-position: top 60px right 0px;
 }
 
-.home::before {
-
+/*.home::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-
 }
 
 .home::after {
-
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+}*/
 
+.background {
+    display: flex;
+    justify-content: center;
+}
+
+
+.welcome {
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: absolute;
+    top:15%;
+    backdrop-filter: blur(3px);
+}
+
+.welcome-subtitle {
+    font-family: 'Nunito', sans-serif;
+    position: absolute;
+    font-size: 1.2em;
+    top: 23%;
+    color: rgb(134, 0, 179);
 }
 
 .container {
     position: relative;
     display: flex;
     justify-content: center;
-    /*align-items: center;*/
-    top: 50%;
-    transform: translateY(30%);
+    transform: translateY(280px);
     max-width: 1200px;
     flex-wrap: wrap;
     z-index: 1;
-
 }
 
 .container .card {
@@ -298,7 +212,7 @@ header.sticky ul li a {
     backdrop-filter: blur(5px);
 }
 
-.container .card .content{
+.container .card .content {
     padding: 20px;
     text-align: center;
     transform: translateY(80px);
@@ -322,14 +236,12 @@ header.sticky ul li a {
 }
 
 .container .card .content .imgbx img {
-
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-
 }
 
 .container .card .content h2 {
@@ -366,42 +278,22 @@ header.sticky ul li a {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.welcome {
-    font-family: 'Nunito', sans-serif;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-
-}
-
-.welcome-subtitle {
-    font-family: 'Nunito', sans-serif;
-    position: absolute;
-    font-size: 1.2em;
-    top: 28%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    color: rgb(134, 0, 179);
+.sign-in-msg {
+    transform:translateX(150px);
 }
 
 .nav-list {
-
     transition: initial;
-
 }
 
 .nav-link,
-.current{
+.current {
     color: #fafafa;
     position: relative;
-   /* font-size: 1.3rem;*/
 }
 
 .nav-link::before,
-.current::before{
+.current::before {
     content: "";
     position: absolute;
     left: 0;
@@ -414,27 +306,12 @@ header.sticky ul li a {
     transition: transform 650ms;
 }
 
-.current::before{
+.current::before {
     transform: scaleX(1);
 }
 
-.nav-link:hover::before{
+.nav-link:hover::before {
     transform: scaleX(1);
-}
-
-.logo-img img {
-    position:relative;
-    width: 100px;
-    height: auto;
-    transform: translateX(-15%);
-}
-
-.footer {
-    display: flex;
-    justify-content: flex-end;
-    align-items:center;
-    padding: 25px 10%;
-    background-color: #1b1f33;
 }
 
 .formular .card {
@@ -446,10 +323,15 @@ header.sticky ul li a {
     width:360px;
 }
 
-.formular {
-    background: linear-gradient(rgba(245, 246,252,0.52), rgba(117, 19, 93, 0.73)), url("../images/path/to/image/background.jpg") center no-repeat fixed ;
+.airport-form {
+    background: linear-gradient(rgba(245, 246,252,0.52), rgba(117, 19, 93, 0.73)), url("../images/path/to/image/background.webp") center no-repeat fixed;
     background-attachment: fixed;
-    height: 100vh;
+    height: 105vh;
+}
+
+.airline-form {
+    background: linear-gradient(rgba(245, 246,252,0.52), rgb(86 9 67)), url("../images/path/to/image/pattern.webp") center no-repeat fixed;
+        height: 105vh;
 }
 
 .flightform .card {
@@ -462,8 +344,246 @@ header.sticky ul li a {
 }
 
 .flightForm {
-    background: linear-gradient(rgba(245, 246,252,0.52), rgba(117, 19, 93, 0.73)), url("../images/path/to/image/background.jpg") center no-repeat fixed ;
+    background: linear-gradient(rgba(245, 246,252,0.52), rgba(117, 19, 93, 0.73)), url("../images/path/to/image/background.webp") center no-repeat fixed;
     background-attachment: fixed;
     height: 100vh;
 }
 
+.mainContent {
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+}
+
+.images img {
+    padding:0 20px 20px;
+    height:380px;
+    width:380px;
+    transform:translateY(65%);
+    filter:brightness(60%)
+}
+
+.images:hover {
+    opacity: .5;
+    transition:.5s;
+    transform:scale(1.1);
+}
+
+.word {
+    display: block;
+    font-family: Audiowide;
+    position:absolute;
+    font-size:50px;
+    color:white;
+}
+
+.word1 {
+    transform:translateX(80px);
+}
+
+.word2 {
+    transform:translateX(95px);
+}
+
+.word3 {
+    transform:translateX(80px);
+}
+
+.word4 {
+    transform:translateX(95px);
+}
+
+.backgroundRepair {
+    background: linear-gradient(rgba(245, 246,252,0.52), rgba(117, 19, 93, 0.73)), url("../images/path/to/image/repair.webp") center no-repeat fixed;
+    background-attachment: fixed;
+    height:165vh;
+}
+
+.admin-title h1 {
+    transform: translate(120%, -55%);
+    font-family: 'Play', sans-serif;
+    color: white;
+    font-size: 4em;
+    margin:0;
+}
+
+.admin-title h3 {
+    transform: translate(125%, -105%);
+    font-family: 'Play', sans-serif;
+    color: #f3c003b8;
+    font-size: 2em;
+    margin:0;
+}
+
+/*media queries for header - starts*/
+
+@media screen and (min-width: 300px) and (max-width: 480px) {
+
+    body {
+        height: 300%;
+    }
+
+    header {
+        height: 50px;
+        width:100%;
+    }
+
+    .home {
+    background-position: top 0px right 0px;
+    }
+
+    .welcome {
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+    top: 10%;
+}
+
+.welcome-subtitle {
+    font-size: .8rem;
+    top: 18%;
+    }
+
+     .container {
+        top: 50px;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width:768px) {
+
+    body {
+        height: 320%;
+    }
+
+     li .nav-link img {
+         height: clamp(25px, 5vw, 30px);
+         width: auto;
+     }
+    header {
+        height: 50px;
+    }
+
+    .home {
+    background-position: top 0px right 0px;
+    }
+
+    .welcome {
+    letter-spacing: 1px;
+    font-size: 2rem;
+}
+
+.welcome-subtitle {
+    font-size: 1rem;
+    }
+
+     .container {
+        top: 20px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width:1024px){
+
+    body {
+        height: 250%;
+    }
+
+    header {
+        height: 3.5rem;
+    }
+
+     header ul li a span {
+        display:block;
+        font-size: max(.8rem, 1.3vw);
+     }
+
+     li .nav-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+     }
+
+    li .nav-link img {
+         align-items: center;
+         height: clamp(20px, 5vw, 25px);
+         width: 25px;
+     }
+
+     .home {
+    background-position: top 0px right 0px;
+    }
+
+    .container {
+        top: 50px;
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width:1200px){
+
+    body {
+      height: 200%;
+    }
+
+    header {
+     top:0;
+     height:4rem;
+    }
+
+    .nav-link {
+        display: flex;
+    }
+
+  header ul li a span {
+    display: block;
+    margin-left:5px;
+    }
+
+.logo-img  {
+    display:flex;
+    justify-content:center;
+    }
+
+.logo-img img {
+    position:relative;
+    width: 80px;
+    height: 40px;
+    }
+
+    .container {
+        top: 0px;
+    }
+}
+
+@media screen and (min-width: 1201px) {
+
+    header {
+         top:0px;
+         height:4rem;
+    }
+
+    .nav-link {
+        display: flex;
+    }
+
+  header ul li a span {
+        display: block;
+        margin-left:5px;
+    }
+
+.logo-img  {
+        display:flex;
+        justify-content:center;
+    }
+
+.logo-img img {
+        position:relative;
+        width: 80px;
+        height: 40px;
+    }
+
+    .container {
+        top: 0px;
+    }
+}
+
+/*media queries for header - ends*/

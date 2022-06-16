@@ -1,0 +1,55 @@
+INSERT INTO public.countries (code,"name",wiki) VALUES
+	 ('AD','Andorra','https://en.wikipedia.org/wiki/Andorra'),
+	 ('AL','Albania','https://en.wikipedia.org/wiki/Albania'),
+	 ('AT','Austria','https://en.wikipedia.org/wiki/Austria'),
+	 ('BA','Bosnia and Herzegovina','https://en.wikipedia.org/wiki/Bosnia_and_Herzegovina'),
+	 ('BE','Belgium','https://en.wikipedia.org/wiki/Belgium'),
+	 ('BG','Bulgaria','https://en.wikipedia.org/wiki/Bulgaria'),
+	 ('BY','Belarus','https://en.wikipedia.org/wiki/Belarus'),
+	 ('CH','Switzerland','https://en.wikipedia.org/wiki/Switzerland'),
+	 ('CZ','Czech Republic','https://en.wikipedia.org/wiki/Czech_Republic'),
+	 ('DE','Germany','https://en.wikipedia.org/wiki/Germany');
+INSERT INTO public.countries (code,"name",wiki) VALUES
+	 ('DK','Denmark','https://en.wikipedia.org/wiki/Denmark'),
+	 ('EE','Estonia','https://en.wikipedia.org/wiki/Estonia'),
+	 ('ES','Spain','https://en.wikipedia.org/wiki/Spain'),
+	 ('FI','Finland','https://en.wikipedia.org/wiki/Finland'),
+	 ('FO','Faroe Islands','https://en.wikipedia.org/wiki/Faroe_Islands'),
+	 ('FR','France','https://en.wikipedia.org/wiki/France'),
+	 ('GB','United Kingdom','https://en.wikipedia.org/wiki/United_Kingdom'),
+	 ('GG','Guernsey','https://en.wikipedia.org/wiki/Guernsey'),
+	 ('GI','Gibraltar','https://en.wikipedia.org/wiki/Gibraltar'),
+	 ('GR','Greece','https://en.wikipedia.org/wiki/Greece');
+INSERT INTO public.countries (code,"name",wiki) VALUES
+	 ('HR','Croatia','https://en.wikipedia.org/wiki/Croatia'),
+	 ('HU','Hungary','https://en.wikipedia.org/wiki/Hungary'),
+	 ('IE','Ireland','https://en.wikipedia.org/wiki/Ireland'),
+	 ('IM','Isle of Man','https://en.wikipedia.org/wiki/Isle_of_Man'),
+	 ('IS','Iceland','https://en.wikipedia.org/wiki/Iceland'),
+	 ('IT','Italy','https://en.wikipedia.org/wiki/Italy'),
+	 ('JE','Jersey','https://en.wikipedia.org/wiki/Jersey'),
+	 ('LI','Liechtenstein','https://en.wikipedia.org/wiki/Liechtenstein'),
+	 ('LT','Lithuania','https://en.wikipedia.org/wiki/Lithuania'),
+	 ('LU','Luxembourg','https://en.wikipedia.org/wiki/Luxembourg');
+INSERT INTO public.countries (code,"name",wiki) VALUES
+	 ('LV','Latvia','https://en.wikipedia.org/wiki/Latvia'),
+	 ('MC','Monaco','https://en.wikipedia.org/wiki/Monaco'),
+	 ('MD','Moldova','https://en.wikipedia.org/wiki/Moldova'),
+	 ('ME','Montenegro','https://en.wikipedia.org/wiki/Montenegro'),
+	 ('MK','North Macedonia','https://en.wikipedia.org/wiki/Macedonia'),
+	 ('MT','Malta','https://en.wikipedia.org/wiki/Malta'),
+	 ('NL','Netherlands','https://en.wikipedia.org/wiki/Netherlands'),
+	 ('NO','Norway','https://en.wikipedia.org/wiki/Norway'),
+	 ('PL','Poland','https://en.wikipedia.org/wiki/Poland'),
+	 ('PT','Portugal','https://en.wikipedia.org/wiki/Portugal');
+INSERT INTO public.countries (code,"name",wiki) VALUES
+	 ('RO','Romania','https://en.wikipedia.org/wiki/Romania'),
+	 ('RS','Serbia','https://en.wikipedia.org/wiki/Serbia'),
+	 ('RU','Russia','https://en.wikipedia.org/wiki/Russia'),
+	 ('SE','Sweden','https://en.wikipedia.org/wiki/Sweden'),
+	 ('SI','Slovenia','https://en.wikipedia.org/wiki/Slovenia'),
+	 ('SK','Slovakia','https://en.wikipedia.org/wiki/Slovakia'),
+	 ('SM','San Marino','https://en.wikipedia.org/wiki/San_Marino'),
+	 ('UA','Ukraine','https://en.wikipedia.org/wiki/Ukraine'),
+	 ('VA','Vatican City','https://en.wikipedia.org/wiki/Vatican_City'),
+	 ('XK','Kosovo','https://en.wikipedia.org/wiki/Kosovo');

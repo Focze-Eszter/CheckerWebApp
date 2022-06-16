@@ -1,39 +1,73 @@
-<html
-       xmlns:th="http://www.thymeleaf.org"
-       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <link href="style.css" th:href="@{/css/style.css}" rel="stylesheet" />
-</head>
+<!DOCTYPE html>
 
-<body >
-<div th:fragment="head">
-<header class="sticky">
-    <div id="flight" class="logo-img"><img src="../static/images/path/to/image/aircraft.png" th:src="@{images/path/to/image/aircraft.png}"></div>
-        <a href="#" class="logo">Checker</a>
-        <ul class="nav-list">
-            <li class="nav-item current"><a th:href="@{/home}">Home</a></li>
-            <li class="nav-item"><a class="nav-link" th:href="@{/searchAirport}">Airports</a></li>
-            <li class="nav-item"><a class="nav-link" th:href="@{/searchAirline}">Airlines</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Flights</a></li>
-            <li class="nav-item"><a class="nav-link" th:href="@{/administrator}" sec:authorize="isAuthenticated()">Administrator</a></li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/login}" id="Sign In" sec:authorize="isAnonymous()">
-                    Sign in
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/logout}" id="Sign Out" sec:authorize="isAuthenticated()" >
-                    Sign out
-                </a>
-            </li>
-        </ul>
-    </header>
-</div>
-<script type="text/javascript ">
-    window.addEventListener("scroll", function() {
-        var header = document.querySelector("header");
-        header.classList.toggle("sticky", window.scrollY > 0);
-    });
-</script>
-</body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    </head>
+
+    <body class="home">
+        <div th:fragment="head">
+            <header>
+                <ul class="nav-list">
+                    <li class="logo-img">
+                        <img src="../static/images/path/to/image/aircraft.webp" th:src="@{/images/path/to/image/aircraft.webp}">
+                        <a href="#" class="logo">Checker</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/home}">
+                            <img src="../static/images/path/to/image/header/home.webp" th:src="@{/images/path/to/image/header/home.webp}">
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/searchAirport}">
+                            <img src="../static/images/path/to/image/header/airport.webp" th:src="@{/images/path/to/image/header/airport.webp}">
+                            <span>Airports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/searchAirline}">
+                            <img src="../static/images/path/to/image/header/airline.webp" th:src="@{/images/path/to/image/header/airline.webp}">
+                            <span>Airlines</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <img src="../static/images/path/to/image/header/flight.webp" th:src="@{/images/path/to/image/header/flight.webp}">
+                            <span>Flights</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/administration}" sec:authorize="isAuthenticated()">
+                            <img src="../static/images/path/to/image/header/admin.webp" th:src="@{/images/path/to/image/header/admin.webp}">
+                            <span>Administrator</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/login}" id="Sign In" sec:authorize="isAnonymous()">
+                            <img src="../static/images/path/to/image/header/sign-in.webp" th:src="@{/images/path/to/image/header/sign-in.webp}">
+                            <span>Sign in</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/logout}" id="Sign Out" sec:authorize="isAuthenticated()" >
+                            <img src="../static/images/path/to/image/header/logout.webp" th:src="@{/images/path/to/image/header/logout.webp}">
+                            <span>Sign out</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <b>
+                            <a href="#" class="nav-link" sec:authorize="isAuthenticated()">
+                                <img src="../static/images/path/to/image/header/user.webp" th:src="@{/images/path/to/image/header/user.webp}">
+                                <span class="username">[[${#request.userPrincipal.principal.name}]]</span>
+                            </a>
+                        </b>
+                    </li>
+                </ul>
+            </header>
+        </div>
+    </body>
 </html>
+

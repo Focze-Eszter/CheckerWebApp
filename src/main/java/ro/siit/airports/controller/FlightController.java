@@ -1,5 +1,6 @@
 package ro.siit.airports.controller;
 
+import ch.qos.logback.classic.pattern.DateConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -13,7 +14,10 @@ import ro.siit.airports.domain.Flight;
 import ro.siit.airports.repository.FlightRepository;
 import ro.siit.airports.service.FlightService;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +41,7 @@ public class FlightController {
                         + "\n" + f.getArrivalAirport().getName() + " " + f.getArrivalAirport().getCity() + "\n" + f.getDeparture())
                 .orElse("No data");
         mav.addObject("flight", flight);
+
         return mav;
 
     }
@@ -48,14 +53,8 @@ public class FlightController {
                                        @Param("sortedField") String sortedField,
                                        @Param("sortedDirection") String sortedDirection, @PathVariable("id") Long airportId) {
         System.out.println("findFlightById" + airportId);
-        /*final ModelAndView mav = new ModelAndView("detailsAirport");*/
         final Page<Flight> flightsPage = flightService.getFlightsById(currentPage, sortedField, sortedDirection,airportId);
-       /* final String flight = flights.stream()
-                .findFirst()
-                .map(f -> f.getAirline().getName()
-                        + "\n" + f.getDepartureAirport().getName() + f.getDepartureAirport().getCountry()
-                        + "\n" + f.getArrivalAirport().getName() + " " + f.getArrivalAirport().getCity() + "\n" + f.getDeparture())
-                .orElse("No data");*/
+
 
         long totalFlights = flightsPage.getTotalElements();
         int totalPages = flightsPage.getTotalPages();

@@ -2,74 +2,63 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Home</title>
-    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Aldrich&display=swap" rel="stylesheet">
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-          crossorigin="anonymous">
-    <link href="style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
-</head>
-<body class="home">
-<header th:insert="header :: head"></header>
+    <head>
+        <title>Home</title>
+        <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Aldrich&display=swap" rel="stylesheet">
+        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+              integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+              crossorigin="anonymous">
+        <link href="style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+    </head>
+    <body class="home">
+        <header th:insert="header :: head"></header>
+            <div class="background">
+                <h1 class="welcome">Welcome to our website!</h1>
+                <h3 class="welcome-subtitle">Point on one of the three sections and begin your adventure! </h3>
+            </div>
+            <div class="container">
+                <div class="card">
+                    <div class="content">
+                        <div id="flight" class="imgbx"><img src="../static/images/path/to/image/flight1.jpg" th:src="@{/images/path/to/image/flight1.jpg}"></div>
+                        <h2>01</h2>
+                        <h3>Flights</h3>
+                        <p>Do you want to find the perfect flight for your dream vacation? We are at your disposal!
+                            Click on "Search Flights" and find it out. </p>
+                        <a href="#">Search Flights</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="content">
+                        <div id="airport" class="imgbx"><img src="../static/images/path/to/image/airport1.webp" th:src="@{/images/path/to/image/airport1.webp}"></div>
+                        <h2>02</h2>
+                        <h3>Airports</h3>
+                        <p>What if you want to find a certain airport? We are glad to help you!
+                            Click on "Search Airports" and find out the right one for you.</p>
+                        <a th:href="@{/searchAirport}">Search Airports</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="content">
+                        <div id="airline" class="imgbx"><img src="../static/images/path/to/image/airline1.webp" th:src="@{/images/path/to/image/airline1.webp}"></div>
+                        <h2>03</h2>
+                        <h3>Airlines</h3>
+                        <p>Hey, do you want to find an excellent airline for you? We are here to help you!
+                            Click on "Search Airlines" and find out the right one for you.</p>
+                        <a th:href="@{/searchAirline}">Search Airlines</a>
+                    </div>
+                </div>
+            </div>
+        <div th:replace="footer :: footer"></div>
 
-<div>
-    <h1 class="welcome">Welcome to our website!</h1>
-    <h3 class="welcome-subtitle">Point on one of the three sections and begin your adventure! </h3>
-</div>
-<div class="container">
-    <div class="card">
-        <div class="content">
-            <div id="flight" class="imgbx"><img src="../static/images/path/to/image/flight1.jpg" th:src="@{/images/path/to/image/flight1.jpg}"></div>
-            <h2>01</h2>
-            <h3>Flights</h3>
-            <p>Do you want to find the perfect flight for your dream vacation? We are at your disposal!
-                Click on "Search Flights" and find it out. </p>
-            <a href="#">Search Flights</a>
-        </div>
-    </div>
-    <div class="card">
-        <div class="content">
-            <div id="airport" class="imgbx"><img src="../static/images/path/to/image/airport1.jpg" th:src="@{/images/path/to/image/airport1.jpg}"></div>
-            <h2>02</h2>
-            <h3>Airports</h3>
-            <p>What if you want to find a certain airport? We are glad to help you!
-                Click on "Search Airports" and find out the right one for you.</p>
-            <a href="#">Search Airports</a>
-        </div>
-    </div>
-    <div class="card">
-        <div class="content">
-            <div id="airline" class="imgbx"><img src="../static/images/path/to/image/airline1.jpg" th:src="@{/images/path/to/image/airline1.jpg}"></div>
-            <h2>03</h2>
-            <h3>Airlines</h3>
-            <p>Hey, do you want to find an excellent airline for you? We are here to help you!
-                Click on "Search Airlines" and find out the right one for you.</p>
-            <a href="#">Search Airlines</a>
-        </div>
-    </div>
-</div>
-
-<!--<script type="text/javascript" th:src = "@{/js/vanilla-tilt.js}" src="static/js/vanilla-tilt.js"></script>-->
-<script>
-    VanillaTilt.init(document.querySelectorAll(".card"), {
-        max: 25,
-        speed: 400,
-        glare: true,
-        "max-glare": 1
-    });
-</script>
-
-<script type="text/javascript ">
-    window.addEventListener("scroll", function() {
-        var header = document.querySelector("header");
-        header.classList.toggle("sticky", window.scrollY > 0);
-    });
-</script>
-
-<!--<footer th:insert = "footer :: foot"></footer>-->
-
-</body>
+        <script>
+            VanillaTilt.init(document.querySelectorAll(".card"), {
+                max: 25,
+                speed: 400,
+                glare: true,
+                "max-glare": 1
+            });
+        </script>
+    </body>
 </html>

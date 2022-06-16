@@ -12,9 +12,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.util.UrlPathHelper;
+import ro.siit.airports.security.oauth.CustomOAuth2UserService;
+import ro.siit.airports.security.oauth.OAuth2LoginSuccessHandler;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +36,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
+
+    @Autowired
+    private CustomOAuth2UserService oAuth2UserService;
+
+    @Autowired
+    private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -66,28 +75,37 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http.authorizeRequests()
-                .antMatchers("/search", "/", "/home,", "/login", "/register", "/add-edited-airport", "/searchAirport", "/airportCurrentPage", "/airport-page", "/exp", "/js/**",
-                        "/css/**", "/fragments/**").permitAll()/*.anyRequest().authenticated()*/
+                .antMatchers("/oauth/**").permitAll()
+                .antMatchers("/search", "/", "/home,", "/login", "/register", "/searchAirport", "/airportCurrentPage", "/airport-page", "/js/**",
+                        "/css/**", "/fragments/**").permitAll()
+                .antMatchers("/delete/**").hasAuthority("ADMIN")
+                .antMatchers("/edit/**", "/create/**").hasAnyAuthority("ADMIN", "EDITOR")
+
                 .and()
                 .formLogin().loginPage("/login").usernameParameter("email").successHandler(new AuthenticationSuccessHandler() {
             @Override
             public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-                System.out.println("user name: " + authentication.getName());
+                System.out.println("username: " + authentication.getName());
                 UrlPathHelper helper = new UrlPathHelper();
                 String contextPath = helper.getContextPath(request);
                 response.sendRedirect(contextPath + "/home");
             }
-        })//.permitAll()
-                //usernameParameter("email")
-                //.defaultSuccessUrl("/login-successful").permitAll()
+        })
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout");
+                .logoutSuccessUrl("/login?logout")
+                .and()
+                .exceptionHandling().accessDeniedPage("/403")
+                .and()
+                .oauth2Login()
+                .loginPage("/login")
+                .userInfoEndpoint().userService(oAuth2UserService)
+                .and()
+                .successHandler(oAuth2LoginSuccessHandler);
 
-        /*.antmMtchers("/airportCurrentPage").hasAnyRole("USER, "ADMIN") */
+
     }
-
-
 }
 

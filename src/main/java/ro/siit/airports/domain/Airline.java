@@ -16,10 +16,10 @@ import javax.persistence.*;
         @Column(name = "alias")
         private String alias;
 
-        @Column(name = "iata", length = 2)
+        @Column(name = "iata", length = 10)
         private String iata;
 
-        @Column(name = "icao", length = 3)
+        @Column(name = "icao", length = 10)
         private String icao;
 
         @Column(name = "callsign")

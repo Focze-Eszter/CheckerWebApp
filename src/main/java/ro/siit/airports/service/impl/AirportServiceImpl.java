@@ -92,7 +92,6 @@ public class AirportServiceImpl implements AirportService {
         }
     }
 
-
     public void deleteAirportById(Long id) {
         System.out.println("deleteAirportById");
 

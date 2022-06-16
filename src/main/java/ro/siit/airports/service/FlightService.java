@@ -13,6 +13,10 @@ import ro.siit.airports.repository.FlightRepository;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +32,6 @@ public class FlightService {
         Pageable pageable = PageRequest.of(pageNumber - 1, 15, sort);
         return flightRepository.findAll(pageable);
     }
-
 
     public Flight getFlightById(Long id) {
         System.out.println("getFlightById");
@@ -72,7 +75,6 @@ public class FlightService {
         }
     }
 
-
     public void deleteFlightById(Long id) {
         System.out.println("deleteFlightById");
 
@@ -93,4 +95,14 @@ public class FlightService {
         return flightRepository.findFlightsByMyRules(airportId, pageable);
     }
 
+    public Flight getNext20FlightsBasedOnTheLocation() {
+
+        OffsetDateTime now = OffsetDateTime.now();
+        System.out.println(now);
+        ZonedDateTime zonedDateTime = now.atZoneSameInstant(ZoneId.systemDefault());
+        //atZone(ZoneId.systemDefault());
+        System.out.println(zonedDateTime);
+
+        return null;
+    }
 }

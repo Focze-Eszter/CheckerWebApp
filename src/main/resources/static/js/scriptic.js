@@ -1,3 +1,12 @@
+
+var airline_placeholders = ['Search by name', 'Search by country', 'Search by icao'];
+var airport_placeholders = ['Search by name', 'Search by city', 'Search by country'];
+var airlines_length = airline_placeholders.length;
+var airports_length = airport_placeholders.length;
+var count = 0;
+var search_airline = document.querySelector(".search-airline");
+var search_airport = document.querySelector(".search-airport");
+
 $(document).ready(function() {
     $(window).scroll(function() {
         if($(this).scrollTop() > 40) {
@@ -11,10 +20,26 @@ $(document).ready(function() {
     });
 });
 
-    window.addEventListener("scroll", function() {
-    var header = document.querySelector("header");
-    header.classList.toggle("sticky", window.scrollY > 0);
-});
+	function changeAirlinePlaceholder() {
+
+                if (count==airlines_length) {
+                    count = 0;
+                }
+                search_airline.setAttribute('placeholder', airline_placeholders[count]);
+                count++;
+    	}
+    	setInterval(changeAirlinePlaceholder, 1800);
+
+
+    	function changeAirportPlaceholder() {
+
+                    if (count==airports_length) {
+                        count = 0;
+                    }
+                    search_airport.setAttribute('placeholder', airport_placeholders[count]);
+                    count++;
+        	}
+        	setInterval(changeAirportPlaceholder, 1800);
 
 
         $('#magic').on('click',function(event) {

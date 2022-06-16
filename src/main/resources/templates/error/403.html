@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Page not found</title>
+    <link href="errors.css" th:href="@{/css/errors.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="error-403-content">
+    <p>Error 403!</p>
+    <h1>Forbidden ಠ_ಠ</h1>
+    <h2>You should not pass! Unfortunately, you do not have the permission to view this page.</h2>
+    <h3>Return to the homepage:</h3>
+    <div class="redirect-homepage">
+        <button>
+            <a th:href="@{/home}">Back to Homepage ></a>
+        </button>
+    </div>
+</div>
+</body>
+</html>

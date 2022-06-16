@@ -14,4 +14,21 @@ public class HomeController {
         final ModelAndView modelAndView = new ModelAndView("home");
         return modelAndView;
     }
+
+    @GetMapping("/")
+    public ModelAndView displayHomeScreen(Model model) {
+        final ModelAndView modelAndView = new ModelAndView("home");
+        return modelAndView;
+    }
+
+    @GetMapping("/administration")
+    public ModelAndView displayAdministrationPage(Model model) {
+        final ModelAndView modelAndView = new ModelAndView("administration");
+        return modelAndView;
+    }
+
+    @GetMapping("/403")
+    public String error403() {
+        return "error/403";
+    }
 }
