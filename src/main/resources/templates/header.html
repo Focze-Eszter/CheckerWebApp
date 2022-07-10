@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<meta charset="utf-8">-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body class="home">
+<div th:fragment="head">
+    <header>
+        <ul class="nav-list">
+            <li class="logo-img">
+                <img src="../static/images/path/to/image/aircraft.webp" th:src="@{/images/path/to/image/aircraft.webp}">
+                <a href="#" class="logo">Checker</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/home}">
+                    <img src="../static/images/path/to/image/header/home.webp" th:src="@{/images/path/to/image/header/home.webp}">
+                    <span th:text="#{home}">Home</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/searchAirport}">
+                    <img src="../static/images/path/to/image/header/airport.webp" th:src="@{/images/path/to/image/header/airport.webp}">
+                    <span th:text="#{airports}">Airports</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/searchAirline}">
+                    <img src="../static/images/path/to/image/header/airline.webp" th:src="@{/images/path/to/image/header/airline.webp}">
+                    <span th:text="#{airlines}">Airlines</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <img src="../static/images/path/to/image/header/flight.webp" th:src="@{/images/path/to/image/header/flight.webp}">
+                    <span th:text="#{flights}">Flights</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/administration}" sec:authorize="isAuthenticated()">
+                    <img src="../static/images/path/to/image/header/admin.webp" th:src="@{/images/path/to/image/header/admin.webp}">
+                    <span th:text="#{administrator}">Administrator</span>
+                </a>
+            </li>
+            <ul class="wrapper">
+                <li class="smaller-wrapper nav-item">
+                    <img class="location" src="../static/images/path/to/image/header/location.webp" th:src="@{/images/path/to/image/header/location.webp}">
+                    <img class="expand_up" src="../static/images/path/to/image/header/expand_up.webp" th:src="@{/images/path/to/image/header/expand_up.webp}">
+                    <ul>
+                        <li class="sublist">
+                            <span class="lang" th:text="#{language}">English</span>
+                            <img class="expand_down" src="../static/images/path/to/image/header/expand_down.webp" th:src="@{/images/path/to/image/header/expand_down.webp}">
+                            <div class="triangle"></div>
+
+                            <div class="lang-group">
+                                <div class="language-option">
+                                    <a th:href="@{'?lang=en'}">
+                                        <i class="flags flag-usa"><div id="english"></div></i>
+                                        <span class="active" th:text="#{english}">English</span>
+                                    </a>
+                                </div>
+                                <div class="language-option">
+                                    <a th:href="@{'?lang=ro'}">
+                                        <i class="flags flag-ro"><div id="română"></div></i>
+                                        <span th:text="#{romanian}">Română</span>
+                                    </a>
+                                </div>
+                                <div class="language-option">
+                                    <a th:href="@{'?lang=es'}">
+                                        <i class="flags flag-es"><div id="español"></div></i>
+                                        <span th:text="#{spanish}">Español</span>
+                                    </a>
+                                </div>
+                                <div class="language-option">
+                                    <a th:href="@{'?lang=jp'}">
+                                        <i class="flags flag-jp"><div id="nihon"></div></i>
+                                        <span th:text="#{japanese}">日本</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <li class="nav-item">
+                <b>
+                    <a href="#" class="nav-link" sec:authorize="isAuthenticated()">
+                        <img src="../static/images/path/to/image/header/user.webp" th:src="@{/images/path/to/image/header/user.webp}">
+                        <span class="username">[[${#request.userPrincipal.principal.name}]]</span>
+                    </a>
+                </b>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/login}" id="Sign In" sec:authorize="isAnonymous()">
+                    <img src="../static/images/path/to/image/header/sign-in.webp" th:src="@{/images/path/to/image/header/sign-in.webp}">
+                    <span th:text="#{sign.in}">Sign in</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/logout}" id="Sign Out" sec:authorize="isAuthenticated()" >
+                    <img src="../static/images/path/to/image/header/logout.webp" th:src="@{/images/path/to/image/header/logout.webp}">
+                    <span th:text="#{sign.out}">Sign out</span>
+                </a>
+            </li>
+        </ul>
+    </header>
+</div>
+</body>
+</html>
+

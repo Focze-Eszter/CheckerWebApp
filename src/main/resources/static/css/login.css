@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+html {
+    height: 100%;
+}
+
+body {
+    background: linear-gradient(rgba(245, 246,252,0.52), rgba(1, 32, 40, 1)), url("../images/path/to/image/night.webp") no-repeat fixed;
+    font-family: 'Numans', sans-serif;
+    background-size: cover;
+    display: flex;
+    background-position: 5% 20%;
+    flex-direction: column;
+    min-height: 153.5%!important;
+}
+
+.feedback-message {
+    transform: translate(20%, 105%);
+    text-align: center;
+    width: 70vw
+}
+
+.container {
+    align-content: center;
+}
+
+.card {
+    height: 370px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0,0,0,0.5) !important;
+    transform: translateY(65%);
+}
+
+.card-footer .links {
+    color: gray;
+}
+
+.card-header h3 {
+    color: rgb(63, 77, 228);
+}
+
+.social_icon span{
+    font-size: 60px;
+    margin-left: 10px;
+    color: gray;
+}
+
+.social_icon span:hover{
+    color: white;
+    cursor: pointer;
+}
+
+.social_icon {
+    position: absolute;
+    right: 20px;
+    top: -45px;
+}
+
+.input-group-prepend span{
+    width: 50px;
+    background-color: #0481a0;
+    color: black;
+    border:0 !important;
+}
+
+input:focus {
+    outline: 0 0 0 0  !important;
+    box-shadow: 0 0 0 0 !important;
+}
+
+.remember {
+    color: white;
+}
+
+.remember input {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+.login_btn {
+    color: black;
+    background-color: #0481a0;
+    width: 100px;
+}
+
+.login_btn:hover {
+    color: black;
+    background-color: white;
+}
+
+.links {
+    color: white;
+}
+
+.links a {
+    margin-left: 4px;
+}

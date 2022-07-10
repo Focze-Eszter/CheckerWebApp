@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Flights</title>
+    <link rel="stylesheet"
+
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+          crossorigin="anonymous">
+
+    <link href="jquery.datetimepicker.min.css " rel="stylesheet"/>
+
+</head>
+<body>
+<header th:insert="header :: head"></header>
+
+<div class="search-container" align="center">
+    <a th:href="@{/search}">Search</a>
+    <h1>Flights</h1>
+
+    <table class="table table-striped table-dark" border="1", cellpadding="10">
+        <thead>
+        <th scope="col">Flight number</th>
+        <th scope="col">Departure airport</th>
+        <th scope="col">Departure time</th>
+        <th scope="col">Arrival airport</th>
+        <th scope="col">Arrival time</th>
+        <th scope="col">Airline</th>
+        <th scope="col">Modify</th>
+        </thead>
+        <tbody>
+        <tr th:each="a : ${myFlights}">
+            <td th:text="${a.flightNo}"></td>
+            <td th:text="${a.departureAirport}"></td>
+            <td th:text = "${a.departure}"></td>
+            <td th:text = "${a.arrivalAirport}"></td>
+            <td th:text = "${a.airport.arrival}"></td>
+            <td th:text = "${a.airline}"></td>
+            <td>
+                <a th:href="@{/edit/{id}(id=${a.id})}" class="btn btn-primary">
+                    <i class="fas fa-user-edit ml-2">Edit</i>
+                </a>
+
+                <a th:href="@{/delete/{id}(id=${a.id})}" class="btn btn-primary">
+                    <i class="fas fa-user-times ml-2">Delete</i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div>
+        Total Airports : [[${totalAirports}]] - Page [[${currentPage}]] of [[${totalPages}]]
+        &nbsp; - &nbsp;
+
+        <a th:if = "${currentPage > 1}"  th:href = "@{'/flights/page/1?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection}}">First</a>
+        <!--th:href="@{/page/1}"-->
+        <span th:unless = "${currentPage > 1}" >First</span>
+        &nbsp;
+
+        <a th:if="${currentPage > 1}" th:href="@{'/flights/page/' + ${currentPage - 1} + '?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection}}" >Previous</a>
+        <span th:unless = "${currentPage > 1}">Previous</span>
+        &nbsp;
+
+        <span th:each = "i: ${#numbers.sequence(1, totalPages)}">
+        <a th:if = "${i != currentPage}" th:href = "@{'/flights/page/' + ${i}} + '?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection}" >[[${i}]]</a>
+            <span th:unless = "${i != currentPage}" >[[${i}]]</span>
+            &nbsp;
+        </span>
+
+        <a th:if = "${currentPage < totalPages}" th:href="@{'/flights/page/' + ${currentPage + 1} + '?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection}}">Next</a>
+        <span th:unless = "${currentPage < totalPages}">Next</span>
+        &nbsp;
+
+        <a th:if = "${currentPage < totalPages}" th:href="@{'/flights/page/' + ${totalPages} + '?sortedField=' + ${sortedField} + '&sortedDirection=' + ${sortedDirection}}">Last</a>
+        <span th:unless = "${currentPage < totalPages}">Last</span>
+
+
+    </div>
+</div>
+
+<div th:insert = "footer :: foot"></div>
+
+</body>
+</html>

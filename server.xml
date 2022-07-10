@@ -1,0 +1,10 @@
+<Connector port="9090" maxHttpHeaderSize="8192"
+           maxThreads="150" minSpareThreads="25" maxSpareThreads="75"
+           enableLookups="false" redirectPort="8443" acceptCount="100"
+           connectionTimeout="20000" disableUploadTimeout="true"
+           compression="on"
+           compressionMinSize="128"
+           noCompressionUserAgents="gozilla, traviata"
+           compressableMimeType="text/html,text/xml,text/plain,text/css,text/ javascript,application/x-javascript,application/javascript"
+           URIEncoding="UTF-8"
+/>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{page.forbidden}">Forbidden Page</title>
+    <link href="errors.css" th:href="@{/css/errors.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="error-403-content">
+    <p th:text="#{403.title}">Error 403!</p>
+    <h1 th:text="#{403.details1}">Forbidden ಠ_ಠ</h1>
+    <h2 th:text="#{403.details2}">You should not pass! Unfortunately, you do not have the permission to view this page.</h2>
+    <h3 th:text="#{403.details3}">Return to the homepage:</h3>
+    <div class="redirect-homepage">
+        <button>
+            <a th:href="@{/home}" th:text="#{back}">Back to Homepage ></a>
+        </button>
+    </div>
+</div>
+</body>
+</html>

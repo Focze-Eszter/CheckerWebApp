@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="#{sign.up}">Register</title>
+        <script src="https://kit.fontawesome.com/c5db01e738.js" crossorigin="anonymous"></script>
+        <link href="/static/css/register.css" th:href="@{/css/register.css}" rel="stylesheet" />
+    </head>
+    <body>
+    <header th:insert="header :: head"></header>
+        <div class="register">
+            <div class="container-register">
+                <div class="alert alert-info" th:if="${exist}">
+                    <p class="text text-center" th:text="#{email.exists}">
+                        An user with this Email already exist
+                    </p>
+                </div>
+                <div class="header">
+                    <h2 th:text="#{sign.up}">Sign up</h2>
+                </div>
+                <form  th:action="@{/process_register/save}" th:object="${user}" method="post" id="form" class="form" enctype = multipart/form-data>
+                    <div class="form-control">
+                         <label for="username"><b th:text="#{username}">Username</b></label>
+                        <input type="text" placeholder="username12" required th:field="*{name}" id="username" th:value="*{name}" th:errorclass="is-invalid"/>
+                        <div class="text text-danger invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></div>
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+                    </div>
+
+                    <div class="form-control">
+                        <label for="email"><b th:text="#{email}">Email</b></label>
+                        <input type="email" th:field ="*{email}" required placeholder="user@yahoo.com" id="email" th:value="*{email}" th:errorclass="is-invalid"/>
+                        <div class="text text-danger invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+                    </div>
+
+                    <div class="form-control">
+                        <label for="username"><b th:text="#{password}">Password</b></label>
+                        <input type="password" th:field = "*{password}" required placeholder="Password" id="password" th:value="*{password}" th:errorclass="is-invalid" />
+                        <div class="text text-danger invalid-feedback" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+                    </div>
+
+                    <div class="form-control">
+                        <label for="username"><b th:text="#{password.check}">Password check</b></label>
+                        <input type="password" placeholder="Password Two" required th:field="*{re_entered_password}" id="password2" th:value="*{re_entered_password}" th:errorclass="is-invalid" />
+                        <div class="text text-danger invalid-feedback" th:if="${#fields.hasErrors('re_entered_password')}" th:errors="*{re_entered_password}"></div>
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+                    </div>
+                    <div class="avatar">
+                        <p>
+                            <label class="avatar-label" for="fileImage" th:text="#{avatar}">Your avatar:</label>
+                            <input type="file" name="fileImage" id="fileImage" accept="image/png, image/jpeg" onchange="preview()"/>
+                        </p>
+                        <p>
+                            <img id="thumbnail" th:alt="#{image.preview}" src="" width="100px" height="100px"/>
+                        </p>
+                    </div>
+                    <button value="submit" th:text="#{create.account}">Create your account</button>
+                    <div>
+                        <p class="py-2" th:text="#{already.account}">Already have an account?</p>
+                        <span>
+                            <a th:href="@{/login}" th:text="#{sign.in}">Sign-in</a>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div th:replace="footer :: footer"></div>
+        <!--<script type="text/javascript" th:src = "@{/js/login-action.js}" src="static/js/login-action.js"></script>-->
+        <script type="text/javascript">
+        function preview() {
+            thumbnail.src=URL.createObjectURL(event.target.files[0]);
+        }
+        </script>
+    </body>
+</html>

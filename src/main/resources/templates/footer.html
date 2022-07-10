@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="footer">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Footer</title>
+        <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <link href="../static/css/footer.css" th:href="@{/css/footer.css}" rel="stylesheet" />
+    </head>
+    <body>
+        <footer th:fragment="footer">
+            <div class="footer rows">
+                <div class="description column">
+                    <h3 th:text="#{about.us}">Despre noi</h3>
+                    <br>
+                    <p th:text="#{footer.description.first}">Checker.ro facilitează o conectare rapidă și simplă la baza noastră de date și vă aduce la dispoziție informații despre zboruri, aeroporturi și linii aeriene.</p>
+                    <p th:text="#{footer.description.second}">Ne propunem să vă punem la dispoziție o bază de date populată cu peste 20.000 de aeroporturi și linii aeriene.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div class="line"></div>
+                    <div class="contact column">
+                        <h3 th:text="#{address.title}">Adresa</h3>
+                        <br>
+                        <p class="title"><b th:text="#{footer.title}">ALIANȚA NAȚIONALĂ DE AERONAUTICĂ ROMÂNIA</b></p>
+                        <ul class="info">
+                            <li>
+                                <span class="icon"><i class="fas fa-map-marker-alt fa-sm"></i></span>
+                                <p th:text="#{address}">Str. Decembrie 1989, Nr. 10</p>
+                            </li>
+
+                            <li>
+                                <span class="icon"><i class="fas fa-phone-alt fa-sm"></i></span>
+                                <p><a th:text="#{telephone}"href="tel:+402606000000">Tel./Fax: 0040.260.000000</a></p>
+                            </li>
+
+                            <li>
+                                <span class="icon"><i class="fas fa-mobile-alt fa-sm"></i></span>
+                                <p><a href="tel:+40735000000" class="icon" th:text="#{mobile}">Mobil: 0040.735.000.000</a></p>
+                            </li>
+
+                            <li>
+                                <span class="icon"><i class="fas fa-envelope fa-sm"></i></span>
+                                <p><a href="mailto:office@bolirareromania.ro" th:text="#{mail}">E-mail: office@checker.ro</a></p>
+                            </li>
+                        </ul>
+                    </div>
+                <div class="social-media column">
+                    <h3 th:text="#{social.media.title}">Ne găsiți pe</h3>
+                    <div class="link">
+                        <a href="#"><i class="fab fa-facebook-f fa-fw hvr-buzz sm-circle"></i></a>
+                        <a href="#" class="fas fa-map-marked-alt fa-fw hvr-buzz sm-circle"></a>
+                        <a href="#" class="fab fa-youtube fa-fw hvr-buzz sm-circle"></a>
+                        <a href="#" class="fas fa-broadcast-tower fa-fw hvr-buzz sm-circle"></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

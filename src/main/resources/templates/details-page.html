@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="#{details}">Details</title>
+        <meta name="viewport" content="width=device-width initial-scale=1.0">
+        <link href="/static/css/details-page.css" th:href="@{/css/details-page.css}" rel="stylesheet" />
+    </head>
+    <body>
+    <header th:insert="header :: head"></header>
+
+    <h1 class="name" th:text="#{airport.name}">Airport name</h1>
+    <section>
+        <table>
+            <thead>
+            <th scope="col" th:text="#{country.iso}">Country iso</th>
+            <th scope="col" th:text="#{country}">Country</th>
+            <th scope="col" th:text="#{state}">State</th>
+            <th scope="col" th:text="#{city}">City</th>
+            <th scope="col" th:text="#{street}">Street</th>
+            <th scope="col" th:text="#{street.number}">Street Number</th>
+            <th scope="col" th:text="#{postal.code}">Postal Code</th>
+            <th scope="col" th:text="#{phone}">Phone</th>
+            <th scope="col" th:text="#{website}">Website</th>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td id="country_iso">-</td>
+                <td id="country">-</td>
+                <td id="state">-</td>
+                <td id="city">-</td>
+                <td id="street">-</td>
+                <td id="street_number">-</td>
+                <td id="postal_code">-</td>
+                <td id="phone">-</td>
+                <td id="website">-</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <iframe th:src="@{'https://maps.google.com/maps?q=' + ${airport_details.getLatitude()} + ',' + ${airport_details.getLongitude()}
+                                                                + '&output=embed'}">
+    </iframe>
+
+    <!--<p th:text = "${airport_info_api}"></p>-->
+
+
+    <div th:replace="footer :: footer"></div>
+
+    <script>
+            var obj = [(${airport_info_api})];
+
+            var name = document.querySelector('.name').innerHTML = obj.name;
+            var iso = document.querySelector('#country_iso').innerHTML = obj.country_iso;
+            var country = document.querySelector('#country').innerHTML = obj.country;
+            var state = document.querySelector('#state').innerHTML = obj.state;
+            var city = document.querySelector('#city').innerHTML = obj.city;
+            var street = document.querySelector('#street').innerHTML = obj.street;
+            var street_no = document.querySelector('#street_number').innerHTML = obj.street_number;
+            var postal_code= document.querySelector('#postal_code').innerHTML = obj.postal_code;
+            var phone = document.querySelector('#phone').innerHTML = obj.phone;
+            var website= document.querySelector('#website').innerHTML = obj.website;
+        </script>
+    </body>
+</html>
